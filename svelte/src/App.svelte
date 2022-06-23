@@ -1,23 +1,37 @@
 <script lang="ts">
   import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+  import Slide0 from './slides/Slide0.svelte'
+  import Slide1 from './slides/Slide1.svelte'
+  import Slide2 from './slides/Slide2.svelte'
+  import Slide3 from './slides/Slide3.svelte'
+  import Slide4 from './slides/Slide4.svelte'
+  import Slide5 from './slides/Slide5.svelte'
+  import Slide6 from './slides/Slide6.svelte'
+  import Slide7 from './slides/Slide7.svelte'
+  import Slide8 from './slides/Slide8.svelte'
+  import Slide9 from './slides/Slide9.svelte'
+  import Slide10 from './slides/Slide10.svelte'
+
+  let currentSlide = 0;
+
+  let components = [Slide0, Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8, Slide9, Slide10];
+
+  const showNext = () => {
+    currentSlide = currentSlide < 10 ? currentSlide + 1 : 0;
+  }
+
+  $: console.log(currentSlide);
 </script>
 
 <main>
   <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
+  <h1>Svelte</h1>
 
-  <Counter />
+  <svelte:component this={ components[currentSlide] }/>
 
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
+  <button on:click={ showNext }>
+    ->
+  </button>
 </main>
 
 <style>
@@ -33,33 +47,17 @@
   }
 
   img {
-    height: 16rem;
-    width: 16rem;
+    height: 4rem;
+    width: 4rem;
   }
 
   h1 {
     color: #ff3e00;
     text-transform: uppercase;
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 100;
     line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
     margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
-
-    p {
-      max-width: none;
-    }
+    max-width: 14rem;
   }
 </style>
